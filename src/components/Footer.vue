@@ -7,7 +7,13 @@
         </p>        
         </div>
         <div class="container is-flex is-rows is-paddingless is-marginless is-centered">
-        
+            
+        <figure class="image is-96x96 is-paddingless is-marginless vucem">
+            <a target="_blank" href="https://www.ventanillaunica.gob.mx/vucem/index.html">
+                <img src="../assets/vucem.png">
+            </a>
+        </figure>
+
         <figure class="image is-96x96 is-paddingless is-marginless caaarem">
             <a target="_blank" href="http://www.caaarem.mx/">
                 <img src="../assets/caaarem.png">
@@ -69,6 +75,9 @@ export default {
 }
 .aaabj:hover{
     animation: rubberBand 2s infinite;
+}
+.vucem:hover{
+    animation: shake 2s infinite;
 }
 .flexdiv{
     display: flex;

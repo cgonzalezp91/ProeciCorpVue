@@ -1,4 +1,4 @@
-async function fetchcall(url, data) {
+export default async function fetchcall(url, data) {
     const PostData = {
         method: 'POST',
         headers: {
@@ -29,5 +29,3 @@ async function fetchcall(url, data) {
 
     }
 }
-
-export default fetchcall

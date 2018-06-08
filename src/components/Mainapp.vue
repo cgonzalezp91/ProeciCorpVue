@@ -7,22 +7,26 @@
         </slider>
         <slider v-if="clientes" ref="slider" :pages="pagescli" :sliderinit="sliderinit">
     
-        </slider>        
-      <div class="overlaydiv" v-if='!clientes'>
-        <div v-show='divfirst' class="flexdiv">
-        <!-- <div class="container"> -->
-          <p class="title is-1 has-text-white">Grupo Proeci</p>
-          <p class="subtitle is-3 has-text-white">Camina con nosotros hacia el futuro</p>
-          <a href="http://proeci.com.mx/" target="_blank" class="button is-primary is-outlined is-centered">Ven con nosotros</a>
-        </div>
-      </div>
-       <div class="overlaydivleft" v-else>
-        <div v-show='divfirstcli'>
-          <p class="title is-1 has-text-white">Grupo Proeci</p>
-          <p class="subtitle is-3 has-text-white">Dejanos ayudarte a caminar hacia el futuro</p>
-          <a href="http://proeci.com.mx/" target="_blank" class="button is-primary is-outlined is-centered">Ven con nosotros</a>
-        </div>
-      </div>
+        </slider>
+      <transition name="fadediv" mode="out-in">
+        <!-- <div v-show="divlogin" style="position: absolute;"> -->
+          <div class="overlaydiv" v-if='!clientes' v-show="divlogin">
+            <div v-show='divfirst' class="flexdiv">
+            <!-- <div class="container"> -->
+              <p class="title is-1 has-text-white">Grupo Proeci</p>
+              <p class="subtitle is-3 has-text-white">Camina con nosotros hacia el futuro</p>
+              <a href="http://proeci.com.mx/" target="_blank" class="button is-primary is-outlined is-centered">Ven con nosotros</a>
+            </div>
+          </div>
+          <div class="overlaydivleft" v-else v-show="divlogin">
+            <div v-show='divfirstcli' class="flexdiv">
+              <p class="title is-1 has-text-white">Grupo Proeci</p>
+              <p class="subtitle is-3 has-text-white">Dejanos ayudarte a caminar hacia el futuro</p>
+              <a href="http://proeci.com.mx/" target="_blank" class="button is-primary is-outlined is-centered">Ven con nosotros</a>
+            </div>
+          </div>
+        <!-- </div> -->
+      </transition>
     </div>
 </template>
 
@@ -39,10 +43,9 @@ export default {
     let that = this
     this.$bus.$on("id-selected", function(id) {
       // console.log(id);
-      if (id == 2) {
+      if (id === 2) {
         that.clientes = true
-         that.$refs.slider.$emit('slideTo', 0)
-        //  that.divfirst = true 
+         that.$refs.slider.$emit('slideTo', 0)        
         that.divfirstcli = true
         // that.currentPage = 0
         }
@@ -50,28 +53,23 @@ export default {
         that.clientes = false
         that.$refs.slider.$emit('slideTo', 0)
         that.divfirst = true 
-        // that.divfirstcli = true
-        // that.currentPage = 0
-        }
-      // changeSlide(id)
-        // this.clientes = true;      
+        }    
     }.bind(this))
+
+    this.$bus.$on("id-login", function(id) {
+       id === 2 ? that.divlogin = false : that.divlogin = true
+     }.bind(this))
      setInterval(function(){
-          // let count = 0
-          // console.log(count)
-          // count =+ count
-          
-          if (pagenum != 2) pagenum = pagenum + 1
-          else pagenum = 0
+          pagenum != 2 ? pagenum = pagenum + 1 : pagenum = 0
           that.$refs.slider.$emit('slideTo', pagenum)
-          if (pagenum != 0) {
-            that.divfirst = false
+          pagenum != 0 ? (
+            that.divfirst = false,
             that.divfirstcli = false
-            }
-          else { 
-            that.divfirst = true 
+          )
+          : (
+            that.divfirst = true,
             that.divfirstcli = true
-            }
+          )
         }, 3000)
   },
   // watch: {
@@ -85,6 +83,7 @@ export default {
       clientes: false,
       divfirst: true,
       divfirstcli: true,
+      divlogin: true,
       //Image list[arr]
       pages:[
         {
@@ -143,28 +142,9 @@ export default {
       }
     };
   },
-  // ready: function ready() {
-  //   this.intervalo();
-  // },
+
     methods: {
-      // intervalo() {
-      //   setInterval(() => {
-      //     let count = 0
-      //     console.log(count)
-      //     count =+ count
-      //     this.$refs.slider.$emit('slideNext')
-      //   }, 100);
-      // },
-      // Listener event
-      slide (data) {
-        console.log(data)
-      },
-      onTap (data) {
-        console.log(data)
-      },
-      onInit (data) {
-        console.log(data)
-      }
+      
     }
 };
 </script>
@@ -178,9 +158,6 @@ export default {
   background-position: bottom !important;
 }
 .overlaydiv{
-  display: flex;
-  flex-direction: column;
-  // border: 5px solid red;
   background: rgba(0, 0, 0, 0.8);
   position: absolute;
   // width: 100px;
@@ -190,8 +167,6 @@ export default {
   z-index: 1;
 }
 .overlaydivleft{
-  
-  // border: 5px solid red;
   background: rgba(0, 0, 0, 0.8);
   position: absolute;
   // width: 100px;
@@ -206,5 +181,16 @@ export default {
 }
 .is-centered{
   align-self: center;
+}
+.fadediv-enter-active, .fadediv-leave-active {
+  // position: absolute;
+  transition: opacity 0.5s ease;
+}
+.fadediv-enter,
+.fadediv-leave-to {
+  position: absolute;
+  opacity: 0;
+  // background-color: red;
+  // transform: translateY(10px);
 }
 </style>
