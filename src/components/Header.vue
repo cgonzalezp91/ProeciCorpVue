@@ -64,7 +64,7 @@
            <transition name="roll" mode="out-in">
             <div class="field" key="3"  v-show="(logininputs1 && cliente)">
               <p class="control has-icons-left">
-                <input class="input is-primary" type="text" :placeholder="placeHolderValue">
+                <input class="input is-primary" id="txtcliente" type="text" :placeholder="placeHolderValue">
                 <span class="icon is-small is-left">
                 <i class="fas fa-envelope"></i>
                 </span>
@@ -82,7 +82,7 @@
             </div>
           </transition>
           <transition name="roll" mode="out-in">
-          <div class="field" key="5" v-show="logininputs1">           
+          <div class="field" key="5" v-show="logininputs1">        
               <p class="control has-icons-left">
                 <input v-on:keyup.enter="login" class="input is-info" id="txtpass" type="password" placeholder="Password">
                 <span class="icon is-small is-left">
@@ -91,45 +91,55 @@
               </p>
             </div>
           </transition>
+          <transition name="roll" mode="out-in">
+          <div class="field" key="6" v-show="logininputs1">        
+              <a class="button is-info grow" @click="login">
+                      <span class="icon child">
+                        <i class="fas fa-user-circle"></i>
+                      </span>
+                      <span>Iniciar Sesion</span>
+                    </a>
+            </div>
+          </transition>
             <transition name="rollup" mode="out-in">
             <div v-show="!logininputs">
-              <figure class="image is-96x96" @click="dash">
+              <figure data-balloon="Dashboard" data-balloon-pos="up" class="image is-96x96" @click="dash">
                 <img src="../assets/CAB1.png">
               </figure>
             </div>
             </transition>
             <transition name="rollout">
             <div v-show="!logininputs">
-              <figure class="image is-96x96" @click="aduanet">
+              <figure data-balloon="Aduanet" data-balloon-pos="up" class="image is-96x96" @click="aduanet">
                 <img src="../assets/aduanet1.png">
               </figure>
             </div>
             </transition>
             <transition name="rollout">
             <div v-show="!logininputs">
-              <figure class="image is-96x96" @click="slamnet">
-                <img src="../assets/slamnet.png">
+              <figure data-balloon="SlamNet" data-balloon-pos="up" class="image is-96x96" @click="slamnet">
+                <img src="../assets/luggage.png">
               </figure>
             </div>
             </transition>
             <transition name="rollout">
             <div v-show="!logininputs">
-              <figure class="image is-96x96" @click="slamcove">
-                <img src="../assets/slamcove.png">
+              <figure data-balloon="SlamCove" data-balloon-pos="up" class="image is-96x96" @click="slamcove">
+                <img src="../assets/folder.png">
               </figure>
             </div>
             </transition>
             <transition name="rollout">
             <div v-show="!logininputs">
-              <figure class="image is-96x96" @click="slamsed">
-                <img src="../assets/slamsed.png">
+              <figure data-balloon="SlamSed" data-balloon-pos="up" class="image is-96x96" @click="slamsed">
+                <img src="../assets/checklist1.png">
               </figure>
             </div>
             </transition>
             <transition name="rollright">
             <div v-show="!logininputs">
-              <figure class="image is-96x96" @click="slampatio">
-                <img src="../assets/patio.png">
+              <figure data-balloon="SlamPatio" data-balloon-pos="up" class="image is-96x96" @click="slampatio">
+                <img src="../assets/truck.png">
               </figure>
             </div>
             </transition>
@@ -258,42 +268,126 @@ export default {
       this.activeProv = true;
     },
     login: async function(event) {
-      const self = this;
+      const self = this
       let loginsection = document.getElementById('loginsection')
-      // self.logininputs1 = !self.logininputs1;
-      //Se elimina url del web service
-          let txtuser = document.getElementById('txtuser')
-          let txtpass = document.getElementById('txtpass')
-          var data = {
-              uid: txtuser.value,
-              pwd: txtpass.value,
-              rem: false,
-              ip: "",
-              cteid: ""
-          }
-          const response = await fetchcall(url, data)
-          if (response) {
-              const jdata = JSON.parse(response)
-              self.logininputs1 = !self.logininputs1;
-              // self.logininputs = false
-              // this.nombre = jdata.uname
-              createCookie('uname',jdata.uname,7)
-              createCookie('ciaid',jdata.ciaid,7)
-              createCookie('uid',jdata.uid,7)
-              createCookie('ulevel',jdata.ulevel,7)
-              createCookie('uprofile',jdata.uprofile,7)
-              createCookie('sPref',jdata.sPref,7)
-              console.log(jdata)
-              setTimeout(() => {
-                if (jdata){
-                  loginsection.style.flexDirection = "row"
-                  loginsection.style.justifyContent = "space-evenly"
-                  self.logininputs = !self.logininputs;
+      let txtuser = document.getElementById('txtuser')
+      let txtpass = document.getElementById('txtpass')
+        ///////////////////////////////////ADDING Funcionality with GitHub Pages////////
+      self.logininputs1 = !self.logininputs1;
+       setTimeout(() => {
+          loginsection.style.flexDirection = "row"
+          loginsection.style.justifyContent = "space-evenly"
+          self.logininputs = !self.logininputs;
+      }, 1000);
+      ///////////////////////////////////ADDING Funcionality with GitHub Pages////////
+      // var data = {
+      //     uid: txtuser.value,
+      //     pwd: txtpass.value,
+      //     rem: false,
+      //     ip: "" ,
+      //     cteid: ""         
+      // }
+      // if (!self.cliente){
+      //     let url = 'services/login.asmx/validateuser'          
+      //     const response = await fetchcall(url, data)
+      //     if (response) {
+      //         const jdata = JSON.parse(response)
+      //         self.logininputs1 = !self.logininputs1;
+      //         createCookie('uname',jdata.uname,7)
+      //         createCookie('ciaid',jdata.ciaid,7)
+      //         createCookie('uid',jdata.uid,7)
+      //         createCookie('ulevel',jdata.ulevel,7)
+      //         createCookie('uprofile',jdata.uprofile,7)
+      //         createCookie('sPref',jdata.sPref,7)
+      //         setTimeout(() => {
+      //           if (jdata){
+      //             loginsection.style.flexDirection = "row"
+      //             loginsection.style.justifyContent = "space-evenly"
+      //             self.logininputs = !self.logininputs;
                   
-                }
-              }, 1000);
-          }
+      //           }
+      //         }, 1000);
+      //     }
+      //     }
+      //     else{
+      //       let url = 'https://dashboardctes.grupoproeci.com.mx/services/login.asmx/validateuser'
+      //       let txtcliente = document.getElementById('txtcliente')
+      //       data.cteid = txtcliente
+      //       const response = await fetchcall(url, data)
+      //       if (response) {
+      //         createCookie('cianame',jdata.cianame,7)
+      //         createCookie('userid',jdata.userid,7)
+      //         createCookie('uid',jdata.uid,7)
+      //         createCookie('ctgid',jdata.ctgid,7)
+      //         createCookie('ciaid',jdata.ciaid,7)
+      //         createCookie('uname',jdata.uname,7)            
+      //         createCookie('ulevel',jdata.ulevel,7)
+      //         createCookie('uprofile',jdata.uprofile,7)   
+      //         setTimeout(() => {
+      //             if (jdata){
+      //               loginsection.style.flexDirection = "row"
+      //               loginsection.style.justifyContent = "space-evenly"
+      //               self.logininputs = !self.logininputs;
+                    
+      //             }
+      //           }, 1000);         
+      //       }
+
+      //     }
     },
+    // logincorp: async function(data){      
+    //   // self.logininputs1 = !self.logininputs1;
+    //   let url = 'services/login.asmx/validateuser'          
+    //       const response = await fetchcall(url, data)
+    //       if (response) {
+    //           const jdata = JSON.parse(response)
+    //           self.logininputs1 = !self.logininputs1;
+    //           // self.logininputs = false
+    //           // this.nombre = jdata.uname
+    //           createCookie('uname',jdata.uname,7)
+    //           createCookie('ciaid',jdata.ciaid,7)
+    //           createCookie('uid',jdata.uid,7)
+    //           createCookie('ulevel',jdata.ulevel,7)
+    //           createCookie('uprofile',jdata.uprofile,7)
+    //           createCookie('sPref',jdata.sPref,7)
+    //           //console.log(jdata)
+    //           setTimeout(() => {
+    //             if (jdata){
+    //               loginsection.style.flexDirection = "row"
+    //               loginsection.style.justifyContent = "space-evenly"
+    //               self.logininputs = !self.logininputs;
+                  
+    //             }
+    //           }, 1000);
+    //       }
+    // },
+    // logincli: async function(data) {
+    //   const self = this;      
+    //   // self.logininputs1 = !self.logininputs1;
+    //   let url = '../dashboardctes.grupoproeci.com.mx/services/login.asmx/validateuser'
+    //   let txtcliente = document.getElementById('txtcliente')
+    //   data.cteid = txtcliente
+    //    const response = await fetchcall(url, data)
+    //       if (response) {
+    //         createCookie('cianame',jdata.cianame,7)
+    //         createCookie('userid',jdata.userid,7)
+    //         createCookie('uid',jdata.uid,7)
+    //         createCookie('ctgid',jdata.ctgid,7)
+    //         createCookie('ciaid',jdata.ciaid,7)
+    //         createCookie('uname',jdata.uname,7)            
+    //         createCookie('ulevel',jdata.ulevel,7)
+    //         createCookie('uprofile',jdata.uprofile,7)   
+    //         setTimeout(() => {
+    //             if (jdata){
+    //               loginsection.style.flexDirection = "row"
+    //               loginsection.style.justifyContent = "space-evenly"
+    //               self.logininputs = !self.logininputs;
+                  
+    //             }
+    //           }, 1000);         
+    //       }
+
+    // },
     logout () {
       let loginsection = document.getElementById('loginsection')
       this.logininputs = !this.logininputs
@@ -305,7 +399,7 @@ export default {
     },
     dash () {
       let ciaidcookie = readCookie("ciaid")          
-      // abrirEnPestana(getUrl(ciaidcookie))
+      abrirEnPestana(getUrl(ciaidcookie))
     },
     aduanet () {
       let url = 'https://proeci-tf.aduanetm3.net/loginI.php'
@@ -336,7 +430,39 @@ function abrirEnPestana(url) {
 		a.href = url;
 		a.click();
   }
-//se elimina funcion con urls
+function getUrl(value){
+  let url
+  if(value === 1) url = 'https://www.grupoproeci.com.mx/dashboardjqx.aspx'
+  else if (value === 3) url = 'https://www.grupoproeci.com.mx/dashboardim.aspx'
+  else if (value === 5) url = 'https://www.grupoproeci.com.mx/dashboardpn.aspx'
+  else url = 'https://www.grupoproeci.com.mx/dashboardjqx.aspx'
+  return url
+}
+async function logincorp(self,data){
+let url = 'services/login.asmx/validateuser'          
+          const response = await fetchcall(url, data)
+          if (response) {
+              const jdata = JSON.parse(response)
+              self.logininputs1 = !self.logininputs1;
+              // self.logininputs = false
+              // this.nombre = jdata.uname
+              createCookie('uname',jdata.uname,7)
+              createCookie('ciaid',jdata.ciaid,7)
+              createCookie('uid',jdata.uid,7)
+              createCookie('ulevel',jdata.ulevel,7)
+              createCookie('uprofile',jdata.uprofile,7)
+              createCookie('sPref',jdata.sPref,7)
+              //console.log(jdata)
+              setTimeout(() => {
+                if (jdata){
+                  loginsection.style.flexDirection = "row"
+                  loginsection.style.justifyContent = "space-evenly"
+                  self.logininputs = !self.logininputs;
+                  
+                }
+              }, 1000);
+          }
+} 
 </script>
 
 
