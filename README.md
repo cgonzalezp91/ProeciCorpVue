@@ -2,6 +2,9 @@
 
 > Proeci Corp made with Vue.js
 
+## Example
+<img src="sample.gif" width="310" />
+
 ## Build Setup
 
 ``` bash
