@@ -5,7 +5,7 @@
 ## Example
 <img src="sample.gif" width="310" />
 
-[Demo]('https://cgonzalezp91.github.io/ProeciCorpVue/')
+[Demo](https://cgonzalezp91.github.io/ProeciCorpVue/)
 
 ## Build Setup
 
