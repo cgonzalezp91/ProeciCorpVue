@@ -273,67 +273,67 @@ export default {
       let txtuser = document.getElementById('txtuser')
       let txtpass = document.getElementById('txtpass')
         ///////////////////////////////////ADDING Funcionality with GitHub Pages////////
-      self.logininputs1 = !self.logininputs1;
-       setTimeout(() => {
-          loginsection.style.flexDirection = "row"
-          loginsection.style.justifyContent = "space-evenly"
-          self.logininputs = !self.logininputs;
-      }, 1000);
+        // self.logininputs1 = !self.logininputs1;
+        // setTimeout(() => {
+        //     loginsection.style.flexDirection = "row"
+        //     loginsection.style.justifyContent = "space-evenly"
+        //     self.logininputs = !self.logininputs;
+        // }, 1000);
       ///////////////////////////////////ADDING Funcionality with GitHub Pages////////
-      // var data = {
-      //     uid: txtuser.value,
-      //     pwd: txtpass.value,
-      //     rem: false,
-      //     ip: "" ,
-      //     cteid: ""         
-      // }
-      // if (!self.cliente){
-      //     let url = 'services/login.asmx/validateuser'          
-      //     const response = await fetchcall(url, data)
-      //     if (response) {
-      //         const jdata = JSON.parse(response)
-      //         self.logininputs1 = !self.logininputs1;
-      //         createCookie('uname',jdata.uname,7)
-      //         createCookie('ciaid',jdata.ciaid,7)
-      //         createCookie('uid',jdata.uid,7)
-      //         createCookie('ulevel',jdata.ulevel,7)
-      //         createCookie('uprofile',jdata.uprofile,7)
-      //         createCookie('sPref',jdata.sPref,7)
-      //         setTimeout(() => {
-      //           if (jdata){
-      //             loginsection.style.flexDirection = "row"
-      //             loginsection.style.justifyContent = "space-evenly"
-      //             self.logininputs = !self.logininputs;
+      var data = {
+          uid: txtuser.value,
+          pwd: txtpass.value,
+          rem: false,
+          ip: "" ,
+          cteid: ""         
+      }
+      if (!self.cliente){
+          let url = 'services/login.asmx/validateuser'          
+          const response = await fetchcall(url, data)
+          if (response) {
+              const jdata = JSON.parse(response)
+              self.logininputs1 = !self.logininputs1;
+              createCookie('uname',jdata.uname,7)
+              createCookie('ciaid',jdata.ciaid,7)
+              createCookie('uid',jdata.uid,7)
+              createCookie('ulevel',jdata.ulevel,7)
+              createCookie('uprofile',jdata.uprofile,7)
+              createCookie('sPref',jdata.sPref,7)
+              setTimeout(() => {
+                if (jdata){
+                  loginsection.style.flexDirection = "row"
+                  loginsection.style.justifyContent = "space-evenly"
+                  self.logininputs = !self.logininputs;
                   
-      //           }
-      //         }, 1000);
-      //     }
-      //     }
-      //     else{
-      //       let url = 'https://dashboardctes.grupoproeci.com.mx/services/login.asmx/validateuser'
-      //       let txtcliente = document.getElementById('txtcliente')
-      //       data.cteid = txtcliente
-      //       const response = await fetchcall(url, data)
-      //       if (response) {
-      //         createCookie('cianame',jdata.cianame,7)
-      //         createCookie('userid',jdata.userid,7)
-      //         createCookie('uid',jdata.uid,7)
-      //         createCookie('ctgid',jdata.ctgid,7)
-      //         createCookie('ciaid',jdata.ciaid,7)
-      //         createCookie('uname',jdata.uname,7)            
-      //         createCookie('ulevel',jdata.ulevel,7)
-      //         createCookie('uprofile',jdata.uprofile,7)   
-      //         setTimeout(() => {
-      //             if (jdata){
-      //               loginsection.style.flexDirection = "row"
-      //               loginsection.style.justifyContent = "space-evenly"
-      //               self.logininputs = !self.logininputs;
+                }
+              }, 1000);
+          }
+          }
+          else{
+            let url = 'https://dashboardctes.grupoproeci.com.mx/services/login.asmx/validateuser'
+            let txtcliente = document.getElementById('txtcliente')
+            data.cteid = txtcliente
+            const response = await fetchcall(url, data)
+            if (response) {
+              createCookie('cianame',jdata.cianame,7)
+              createCookie('userid',jdata.userid,7)
+              createCookie('uid',jdata.uid,7)
+              createCookie('ctgid',jdata.ctgid,7)
+              createCookie('ciaid',jdata.ciaid,7)
+              createCookie('uname',jdata.uname,7)            
+              createCookie('ulevel',jdata.ulevel,7)
+              createCookie('uprofile',jdata.uprofile,7)   
+              setTimeout(() => {
+                  if (jdata){
+                    loginsection.style.flexDirection = "row"
+                    loginsection.style.justifyContent = "space-evenly"
+                    self.logininputs = !self.logininputs;
                     
-      //             }
-      //           }, 1000);         
-      //       }
+                  }
+                }, 1000);         
+            }
 
-      //     }
+          }
     },
     // logincorp: async function(data){      
     //   // self.logininputs1 = !self.logininputs1;
